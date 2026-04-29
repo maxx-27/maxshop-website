@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MaxShop | Checkout</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#45474b",
+                    "on-tertiary-container": "#f8f8fe",
+                    "background": "#050505",
+                    "secondary-fixed-dim": "#e9c349",
+                    "inverse-primary": "#0054d6",
+                    "outline": "#8c90a1",
+                    "surface-container-high": "#1c2b3c",
+                    "on-secondary-fixed": "#241a00",
+                    "on-surface": "#d4e4fa",
+                    "on-secondary-fixed-variant": "#574500",
+                    "on-primary-container": "#f8f7ff",
+                    "on-primary-fixed": "#001849",
+                    "primary-fixed": "#dae1ff",
+                    "on-secondary-container": "#342800",
+                    "on-background": "#d4e4fa",
+                    "tertiary-fixed-dim": "#c6c6cc",
+                    "primary": "#b3c5ff",
+                    "on-primary": "#002b75",
+                    "inverse-on-surface": "#233143",
+                    "error-container": "#93000a",
+                    "primary-container": "#0066ff",
+                    "on-surface-variant": "#c2c6d8",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-highest": "#273647",
+                    "on-tertiary": "#2f3035",
+                    "tertiary-container": "#717277",
+                    "secondary-fixed": "#ffe088",
+                    "surface-container": "#122131",
+                    "on-error": "#690005",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "secondary-container": "#af8d11",
+                    "tertiary": "#c6c6cc",
+                    "surface-variant": "#273647",
+                    "surface-dim": "#051424",
+                    "surface-tint": "#b3c5ff",
+                    "surface-container-low": "#0d1c2d",
+                    "surface": "#051424",
+                    "outline-variant": "#424656",
+                    "surface-bright": "#2c3a4c",
+                    "on-tertiary-fixed": "#1a1c20",
+                    "surface-container-lowest": "#010f1f",
+                    "on-primary-fixed-variant": "#003fa4",
+                    "tertiary-fixed": "#e2e2e8",
+                    "error": "#ffb4ab",
+                    "on-secondary": "#3c2f00",
+                    "inverse-surface": "#d4e4fa",
+                    "secondary": "#e9c349"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "card-padding": "20px",
+                    "margin-page": "40px",
+                    "gutter": "24px",
+                    "unit": "4px",
+                    "input-height": "48px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(15, 17, 21, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .deep-inset {
+            background: #0A0A0A;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .deep-inset:focus-within {
+            border-color: #0066ff;
+            box-shadow: 0 0 0 1px #0066ff;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #273647;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-[#050505] text-on-surface font-body-md min-h-screen selection:bg-primary-container selection:text-white">
+<!-- TopNavBar -->
+<header class="fixed top-0 z-50 w-full bg-[#050505]/80 backdrop-blur-xl border-b border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-screen-2xl mx-auto font-inter tracking-tight">
+<div class="text-xl font-black tracking-tighter text-white uppercase">MaxShop</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-zinc-400 font-medium hover:text-white transition-colors" href="index.html">Home</a>
+<a class="text-zinc-400 font-medium hover:text-white transition-colors" href="login.html">Login</a>
+<a class="text-zinc-400 font-medium hover:text-white transition-colors" href="#">WhatsApp</a>
+<a class="text-zinc-400 font-medium hover:text-white transition-colors" href="#">Instagram</a>
+<a class="text-zinc-400 font-medium hover:text-white transition-colors" href="#">Community</a>
+<a class="text-zinc-400 font-medium hover:text-white transition-colors" href="#">Support</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="text-zinc-400 hover:text-white transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-20 px-6 max-w-screen-xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Side: Product Summary -->
+<div class="lg:col-span-5 space-y-gutter">
+<div class="glass-panel p-card-padding rounded-xl overflow-hidden">
+<div class="aspect-square rounded-lg overflow-hidden mb-6 relative group">
+<img alt="Product Image" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDx8PXSq8Z5R9thZrX2QTS5qNRsf6_J6T8_47qG6mj0RsZ71QZwrCfqAz8_x8kUlcVk9W04gUqi4ni8iD2EYBbwboXLJBs-5zQ1GiUqVmcYYD-gpTUsiXmUzddUThEXu3MSVkx5JiWTDzQwNFeeJe587LkaljuCaLKKLCAbK-lEevgfqjXIvaKr3s1SYc18lVrVyoQAjVJrivs0uNrX_tluLFXwWzppJAOydaZWFsIMN3GowR4aGmpTd_T0VL4Lj49U3wEnjz7bYJM"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0F1115] via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-4 left-4">
+<span id="product-badge" class="px-3 py-1 bg-primary-container text-white text-label-sm rounded-full uppercase tracking-widest font-bold">Premium</span>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-start">
+<div>
+<h1 id="product-title" class="font-headline-lg text-white mb-1">Netflix Premium 4K</h1>
+<p class="text-on-surface-variant font-label-md">Global Access • Shared Account</p>
+</div>
+<div class="text-right">
+<span id="product-price" class="block font-headline-md text-white">Rp 35.000</span>
+<span class="text-label-sm text-secondary font-bold uppercase tracking-tighter">Gold Tier</span>
+</div>
+</div>
+<div class="pt-4 border-t border-white/5 space-y-3">
+<h3 class="font-label-md text-white uppercase tracking-widest opacity-50">Description</h3>
+<p class="text-on-surface-variant text-body-md leading-relaxed">
+                                Get exclusive access to Netflix UHD 4K quality. Valid for 30 days. Shared profile with high-speed server response. Includes anti-hold guarantee and 24/7 technical support.
+                            </p>
+</div>
+<div class="grid grid-cols-3 gap-2 pt-4">
+<div class="glass-panel p-3 rounded-lg text-center">
+<span class="material-symbols-outlined text-primary mb-1" data-icon="speed">speed</span>
+<p class="text-[10px] text-zinc-500 uppercase font-bold">Fast Delivery</p>
+</div>
+<div class="glass-panel p-3 rounded-lg text-center">
+<span class="material-symbols-outlined text-primary mb-1" data-icon="verified_user">verified_user</span>
+<p class="text-[10px] text-zinc-500 uppercase font-bold">Safe Transact</p>
+</div>
+<div class="glass-panel p-3 rounded-lg text-center">
+<span class="material-symbols-outlined text-primary mb-1" data-icon="support_agent">support_agent</span>
+<p class="text-[10px] text-zinc-500 uppercase font-bold">Live Support</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Side: Order Form -->
+<div class="lg:col-span-7">
+<div class="glass-panel p-8 rounded-xl space-y-8">
+<div class="flex items-center gap-4 border-b border-white/5 pb-6">
+<div class="w-12 h-12 bg-primary-container/20 rounded-full flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined" data-icon="shopping_basket">shopping_basket</span>
+</div>
+<div>
+<h2 class="font-headline-md text-white">Order Details</h2>
+<p class="text-on-surface-variant text-label-md">Complete the information below to proceed</p>
+</div>
+</div>
+<form class="space-y-6">
+<!-- Buyer Name -->
+<div class="space-y-2">
+<label class="block text-label-md text-white font-semibold ml-1">Buyer Name</label>
+<div class="deep-inset rounded-lg px-4 h-[48px] flex items-center">
+<span class="material-symbols-outlined text-zinc-500 mr-3 text-sm" data-icon="person">person</span>
+<input class="bg-transparent border-none focus:ring-0 w-full text-white placeholder-zinc-600 font-body-md" placeholder="Enter your full name" type="text"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Quantity -->
+<div class="space-y-2">
+<label class="block text-label-md text-white font-semibold ml-1">Quantity (Jumlah)</label>
+<div class="deep-inset rounded-lg px-4 h-[48px] flex items-center justify-between">
+<button class="text-primary-container hover:bg-primary-container/10 w-8 h-8 rounded flex items-center justify-center transition-colors" type="button">
+<span class="material-symbols-outlined" data-icon="remove">remove</span>
+</button>
+<input class="bg-transparent border-none focus:ring-0 w-16 text-center text-white font-bold text-lg" type="number" value="1"/>
+<button class="text-primary-container hover:bg-primary-container/10 w-8 h-8 rounded flex items-center justify-center transition-colors" type="button">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+</div>
+</div>
+<!-- Note Choice -->
+<div class="space-y-2">
+<label class="block text-label-md text-white font-semibold ml-1">Priority</label>
+<div class="grid grid-cols-2 gap-2">
+<label class="relative cursor-pointer group">
+<input checked="" class="peer sr-only" name="priority" type="radio"/>
+<div class="deep-inset h-[48px] rounded-lg flex items-center justify-center text-label-md text-zinc-500 peer-checked:bg-primary-container/10 peer-checked:text-primary-container peer-checked:border-primary-container transition-all">
+                                            Buru-buru
+                                        </div>
+</label>
+<label class="relative cursor-pointer group">
+<input class="peer sr-only" name="priority" type="radio"/>
+<div class="deep-inset h-[48px] rounded-lg flex items-center justify-center text-label-md text-zinc-500 peer-checked:bg-primary-container/10 peer-checked:text-primary-container peer-checked:border-primary-container transition-all">
+                                            Santai
+                                        </div>
+</label>
+</div>
+</div>
+</div>
+<!-- Catatan -->
+<div class="space-y-2">
+<label class="block text-label-md text-white font-semibold ml-1">Notes (Catatan)</label>
+<div class="deep-inset rounded-lg p-4">
+<textarea class="bg-transparent border-none focus:ring-0 w-full text-white placeholder-zinc-600 font-body-md resize-none custom-scrollbar" placeholder="Add any special instructions..." rows="3"></textarea>
+</div>
+</div>
+<!-- Payment Method -->
+<div class="space-y-3">
+<label class="block text-label-md text-white font-semibold ml-1">Payment Method</label>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+<label class="relative cursor-pointer">
+<input checked="" class="peer sr-only" name="payment" type="radio"/>
+<div class="deep-inset p-4 rounded-lg flex flex-col items-center gap-2 peer-checked:bg-primary-container/10 peer-checked:border-primary-container group transition-all">
+<span class="material-symbols-outlined text-zinc-500 group-hover:text-white peer-checked:text-primary-container" data-icon="qr_code_2">qr_code_2</span>
+<span class="text-label-sm font-bold uppercase tracking-tight text-zinc-400 group-hover:text-white peer-checked:text-primary-container">QRIS</span>
+</div>
+</label>
+<label class="relative cursor-pointer">
+<input class="peer sr-only" name="payment" type="radio"/>
+<div class="deep-inset p-4 rounded-lg flex flex-col items-center gap-2 peer-checked:bg-primary-container/10 peer-checked:border-primary-container group transition-all">
+<span class="material-symbols-outlined text-zinc-500 group-hover:text-white peer-checked:text-primary-container" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="text-label-sm font-bold uppercase tracking-tight text-zinc-400 group-hover:text-white peer-checked:text-primary-container">Dana</span>
+</div>
+</label>
+<label class="relative cursor-pointer">
+<input class="peer sr-only" name="payment" type="radio"/>
+<div class="deep-inset p-4 rounded-lg flex flex-col items-center gap-2 peer-checked:bg-primary-container/10 peer-checked:border-primary-container group transition-all">
+<span class="material-symbols-outlined text-zinc-500 group-hover:text-white peer-checked:text-primary-container" data-icon="payments">payments</span>
+<span class="text-label-sm font-bold uppercase tracking-tight text-zinc-400 group-hover:text-white peer-checked:text-primary-container">Gopay</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="pt-6 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="text-center md:text-left">
+<span class="block text-zinc-500 text-label-sm uppercase tracking-widest mb-1">Total Payment</span>
+<span id="total-display" class="font-headline-md text-white">Rp 35.000</span>
+</div>
+<button class="w-full md:w-auto px-12 py-4 bg-primary-container text-white font-headline-md rounded-xl shadow-[0_0_20px_rgba(0,102,255,0.3)] hover:scale-[1.02] active:scale-95 transition-all duration-200 uppercase tracking-tighter" type="submit">
+                                Checkout Now
+                            </button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Mobile Nav -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 bg-[#0F1115]/90 backdrop-blur-xl border-t border-white/5 px-6 py-4 z-50">
+<div class="flex justify-around items-center">
+<button class="flex flex-col items-center gap-1 text-primary-container">
+<span class="material-symbols-outlined" data-icon="home" data-weight="fill" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[10px] font-bold uppercase">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-zinc-500">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="text-[10px] font-bold uppercase">Explore</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-zinc-500">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="text-[10px] font-bold uppercase">Orders</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-zinc-500">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[10px] font-bold uppercase">Profile</span>
+</button>
+</div>
+</div>
+
+<!-- Script Checkout ke WhatsApp - Dynamic via URL params -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // ===== KONFIGURASI ADMIN =====
+    const waNumber = "62895393870131";
+
+    // ===== BACA URL PARAMS =====
+    const params = new URLSearchParams(window.location.search);
+    const productName = params.get('product') || 'Netflix Premium 4K';
+    const basePrice   = parseInt(params.get('price')) || 35000;
+    const badge       = params.get('badge') || 'Premium';
+
+    // ===== UPDATE UI DENGAN DATA PRODUK =====
+    const productTitle = document.getElementById('product-title');
+    const productPrice = document.getElementById('product-price');
+    const productBadge = document.getElementById('product-badge');
+    const totalDisplay = document.getElementById('total-display');
+
+    if (productTitle) productTitle.textContent = productName;
+    if (productBadge) productBadge.textContent = badge;
+
+    const formatCurrency = (amount) => 'Rp ' + amount.toLocaleString('id-ID');
+
+    const updateTotal = () => {
+        let qty = parseInt(qtyInput.value) || 1;
+        if (qty < 1) { qty = 1; qtyInput.value = 1; }
+        const total = basePrice * qty;
+        if (productPrice) productPrice.textContent = formatCurrency(basePrice);
+        if (totalDisplay) totalDisplay.textContent = formatCurrency(total);
+    };
+
+    const form = document.querySelector('form');
+    if (!form) return;
+
+    const nameInput    = form.querySelector('input[placeholder="Enter your full name"]');
+    const qtyInput     = form.querySelector('input[type="number"]');
+    const priorityRadios = form.querySelectorAll('input[name="priority"]');
+    const notesInput   = form.querySelector('textarea');
+    const paymentRadios  = form.querySelectorAll('input[name="payment"]');
+    const minusBtn     = qtyInput.previousElementSibling;
+    const plusBtn      = qtyInput.nextElementSibling;
+
+    // Init tampilan
+    updateTotal();
+
+    minusBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        let qty = parseInt(qtyInput.value) || 1;
+        if (qty > 1) { qtyInput.value = qty - 1; updateTotal(); }
+    });
+
+    plusBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        let qty = parseInt(qtyInput.value) || 1;
+        qtyInput.value = qty + 1;
+        updateTotal();
+    });
+
+    qtyInput.addEventListener('change', updateTotal);
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const name  = nameInput ? nameInput.value.trim() : '';
+        const qty   = parseInt(qtyInput.value) || 1;
+        const notes = notesInput ? notesInput.value.trim() || '-' : '-';
+
+        if (!name) {
+            alert('Mohon isi Nama Pembeli terlebih dahulu.');
+            if (nameInput) nameInput.focus();
+            return;
+        }
+
+        const checkedPriority = Array.from(priorityRadios).find(r => r.checked);
+        const priorityText    = checkedPriority ? checkedPriority.nextElementSibling.textContent.trim() : 'Buru-buru';
+
+        const checkedPayment  = Array.from(paymentRadios).find(r => r.checked);
+        const paymentEl       = checkedPayment ? checkedPayment.nextElementSibling.querySelector('span:last-child') : null;
+        const paymentText     = paymentEl ? paymentEl.textContent.trim() : 'QRIS';
+
+        const total = basePrice * qty;
+
+        const orderId = 'ORD-' + Date.now().toString().slice(-6);
+
+        const message =
+`*🔔 PESANAN BARU - MAXSHOP 🔔*
+━━━━━━━━━━━━━━━━━━━━
+🆔 Order ID: ${orderId}
+
+*📝 Detail Pembeli:*
+👤 Nama       : ${name}
+⚡ Prioritas  : ${priorityText}
+🗒️ Catatan    : ${notes}
+
+*🛒 Detail Produk:*
+📦 Produk     : ${productName}
+🔢 Jumlah     : ${qty}x
+💰 Total      : *${formatCurrency(total)}*
+
+*💳 Metode Pembayaran:*
+🏦 ${paymentText}
+━━━━━━━━━━━━━━━━━━━━
+_Halo min, saya ingin melanjutkan pesanan di atas. Mohon konfirmasinya ya! 🙏_`;
+
+        const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
+        window.open(waUrl, '_blank');
+    });
+});
+</script>
+</body></html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #051424; color: white; }
+        .glass-card {
+            background: rgba(15, 17, 21, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+</style>
+</head>
+<body class="antialiased">
+<aside class="fixed h-screen w-64 left-0 top-0 border-r border-white/10 bg-[#050505] z-50 flex flex-col py-6">
+<div class="px-6 mb-8">
+<h1 class="text-2xl font-black tracking-tighter text-white">MaxShop</h1>
+<p class="text-xs font-medium text-slate-500 tracking-widest uppercase">Premium Admin</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 font-medium hover:bg-white/5 hover:text-white transition-all" href="admin-overview.html">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Overview</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-blue-500 bg-[#0066FF]/5 border-r-2 border-[#0066FF] font-semibold" href="admin-settings.html">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+</aside>
+<main class="ml-64 p-10 max-w-[1200px]">
+<header class="mb-10">
+<h2 class="text-3xl font-semibold">System Settings</h2>
+<p class="text-slate-400 mt-2">Manage your marketplace infrastructure, payment gateways, and security protocols.</p>
+</header>
+<div class="grid grid-cols-1 gap-10">
+<section class="glass-card rounded-xl p-8 shadow-2xl relative">
+<div class="flex items-start gap-6 mb-8">
+<div class="p-3 rounded-lg bg-blue-500/10 text-blue-500">
+<span class="material-symbols-outlined" data-icon="store">store</span>
+</div>
+<div>
+<h3 class="text-xl font-semibold">General Settings</h3>
+<p class="text-slate-500 text-sm">Core configuration for your MaxShop brand identity.</p>
+</div>
+</div>
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-2">
+<label class="block text-xs uppercase text-slate-400">Store Name</label>
+<input class="w-full bg-black border border-slate-800 rounded-lg px-4 py-3 text-white" type="text" value="MaxShop Premium"/>
+</div>
+<div class="space-y-2">
+<label class="block text-xs uppercase text-slate-400">Contact Email</label>
+<input class="w-full bg-black border border-slate-800 rounded-lg px-4 py-3 text-white" type="email" value="admin@maxshop.io"/>
+</div>
+<div class="space-y-2">
+<label class="block text-xs uppercase text-slate-400">Currency</label>
+<select class="w-full bg-black border border-slate-800 rounded-lg px-4 py-3 text-white">
+<option>USD ($)</option>
+<option selected>IDR (Rp)</option>
+<option>EUR (€)</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="block text-xs uppercase text-slate-400">Timezone</label>
+<select class="w-full bg-black border border-slate-800 rounded-lg px-4 py-3 text-white">
+<option selected>GMT+7 (Jakarta)</option>
+</select>
+</div>
+</div>
+<div class="mt-8">
+<button type="button" class="bg-blue-600 text-white px-6 py-2 rounded font-semibold">Save Settings</button>
+</div>
+</form>
+</section>
+</div>
+</main>
+</body></html>
