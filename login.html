@@ -110,6 +110,21 @@
             color: #64748b !important;
             opacity: 1;
         }
+        .deep-inset,
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            color: #ffffff !important;
+            caret-color: #ffffff !important;
+            -webkit-text-fill-color: #ffffff !important;
+        }
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus {
+            -webkit-text-fill-color: #ffffff !important;
+            -webkit-box-shadow: 0 0 0 1000px #010f1f inset !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
     </style>
 </head>
 <body class="bg-surface text-on-surface font-body-md min-h-screen flex items-center justify-center overflow-x-hidden relative">
