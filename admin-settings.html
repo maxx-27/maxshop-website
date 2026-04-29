@@ -2,81 +2,298 @@
 <html class="dark" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MaxShop Admin - Settings</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <style>
-        body { font-family: 'Inter', sans-serif; background-color: #051424; color: white; }
-        .glass-card {
-            background: rgba(15, 17, 21, 0.6);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
+        body { font-family: 'Inter', sans-serif; background-color: #051424; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-card { background: rgba(15,17,21,0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
 </style>
+<script id="tailwind-config">
+tailwind.config = { darkMode:"class", theme:{ extend:{ colors:{ "background":"#051424","surface":"#051424","surface-container-lowest":"#010f1f","surface-container-low":"#0d1c2d","surface-container":"#122131","surface-container-high":"#1c2b3c","primary-container":"#0066ff","primary":"#b3c5ff","secondary":"#e9c349","error":"#ffb4ab","error-container":"#93000a","on-surface":"#d4e4fa","on-surface-variant":"#c2c6d8","outline-variant":"#424656","inverse-primary":"#0054d6","surface-tint":"#b3c5ff" }, spacing:{ "gutter":"24px","card-padding":"20px","margin-page":"40px","input-height":"48px" } } } }
+</script>
 </head>
-<body class="antialiased">
-<aside class="fixed h-screen w-64 left-0 top-0 border-r border-white/10 bg-[#050505] z-50 flex flex-col py-6">
+<body class="bg-background text-on-background antialiased">
+<aside class="fixed h-screen w-64 left-0 top-0 border-r border-white/10 bg-[#050505] shadow-[4px_0_24px_rgba(0,0,0,0.5)] z-50 flex flex-col py-6">
 <div class="px-6 mb-8">
 <h1 class="text-2xl font-black tracking-tighter text-white">MaxShop</h1>
 <p class="text-xs font-medium text-slate-500 tracking-widest uppercase">Premium Admin</p>
 </div>
 <nav class="flex-1 space-y-1">
-<a class="flex items-center gap-3 px-4 py-3 text-slate-400 font-medium hover:bg-white/5 hover:text-white transition-all" href="admin-overview.html">
-<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
-<span>Overview</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-blue-500 bg-[#0066FF]/5 border-r-2 border-[#0066FF] font-semibold" href="admin-settings.html">
-<span class="material-symbols-outlined" data-icon="settings">settings</span>
-<span>Settings</span>
-</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 font-medium hover:bg-white/5 hover:text-white transition-all" href="admin-overview.html"><span class="material-symbols-outlined">dashboard</span><span>Overview</span></a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 font-medium hover:bg-white/5 hover:text-white transition-all" href="admin-products.html"><span class="material-symbols-outlined">inventory_2</span><span>Products</span></a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 font-medium hover:bg-white/5 hover:text-white transition-all" href="#"><span class="material-symbols-outlined">shopping_cart</span><span>Orders</span></a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#0066FF] bg-[#0066FF]/5 border-r-2 border-[#0066FF] font-semibold" href="admin-settings.html"><span class="material-symbols-outlined">settings</span><span>Settings</span></a>
 </nav>
+<div class="px-6 mt-auto pt-6 border-t border-white/10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">M</div>
+<div><p class="text-sm font-bold text-white">Max</p><p class="text-xs text-slate-500">Super Admin</p></div>
+</div>
+</div>
 </aside>
+
+<header class="sticky top-0 z-40 w-[calc(100%-16rem)] ml-64 border-b border-white/10 bg-[#050505]/80 backdrop-blur-xl shadow-sm">
+<div class="flex justify-between items-center h-16 px-8">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500">search</span>
+<input class="w-full bg-black/30 border border-slate-800 rounded-lg py-2 pl-10 pr-4 text-sm text-white focus:border-blue-500 outline-none" placeholder="Search settings..." type="text"/>
+</div>
+<div class="flex items-center gap-4 ml-4">
+<button class="text-slate-400 hover:text-blue-500 transition-colors"><span class="material-symbols-outlined">notifications</span></button>
+<a href="login.html" class="text-slate-400 hover:text-red-400 transition-colors" title="Logout"><span class="material-symbols-outlined">logout</span></a>
+</div>
+</div>
+</header>
+
 <main class="ml-64 p-10 max-w-[1200px]">
 <header class="mb-10">
-<h2 class="text-3xl font-semibold">System Settings</h2>
+<h2 class="text-3xl font-semibold text-white">System Settings</h2>
 <p class="text-slate-400 mt-2">Manage your marketplace infrastructure, payment gateways, and security protocols.</p>
 </header>
+
 <div class="grid grid-cols-1 gap-10">
-<section class="glass-card rounded-xl p-8 shadow-2xl relative">
+
+<!-- General Settings -->
+<section class="glass-card rounded-xl p-8 shadow-2xl">
 <div class="flex items-start gap-6 mb-8">
-<div class="p-3 rounded-lg bg-blue-500/10 text-blue-500">
-<span class="material-symbols-outlined" data-icon="store">store</span>
+<div class="p-3 rounded-lg bg-blue-500/10 text-blue-400"><span class="material-symbols-outlined">store</span></div>
+<div><h3 class="text-xl font-semibold text-white">General Settings</h3><p class="text-slate-500 text-sm">Core configuration for your MaxShop brand identity.</p></div>
 </div>
-<div>
-<h3 class="text-xl font-semibold">General Settings</h3>
-<p class="text-slate-500 text-sm">Core configuration for your MaxShop brand identity.</p>
-</div>
-</div>
-<form class="space-y-6">
+<form id="general-form" class="space-y-6">
 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-<div class="space-y-2">
-<label class="block text-xs uppercase text-slate-400">Store Name</label>
-<input class="w-full bg-black border border-slate-800 rounded-lg px-4 py-3 text-white" type="text" value="MaxShop Premium"/>
+<div class="space-y-2"><label class="block text-xs uppercase text-slate-400 font-semibold">Store Name</label><input id="store-name" class="w-full bg-black border border-slate-800 focus:border-blue-500 rounded-lg px-4 py-3 text-white outline-none" type="text" value="MaxShop Premium"/></div>
+<div class="space-y-2"><label class="block text-xs uppercase text-slate-400 font-semibold">Contact Email</label><input id="store-email" class="w-full bg-black border border-slate-800 focus:border-blue-500 rounded-lg px-4 py-3 text-white outline-none" type="email" value="admin@maxshop.io"/></div>
+<div class="space-y-2"><label class="block text-xs uppercase text-slate-400 font-semibold">Currency</label>
+<select class="w-full bg-black border border-slate-800 focus:border-blue-500 rounded-lg px-4 py-3 text-white outline-none"><option>USD ($)</option><option selected>IDR (Rp)</option><option>EUR (€)</option></select></div>
+<div class="space-y-2"><label class="block text-xs uppercase text-slate-400 font-semibold">Timezone</label>
+<select class="w-full bg-black border border-slate-800 focus:border-blue-500 rounded-lg px-4 py-3 text-white outline-none"><option selected>GMT+7 (Asia/Jakarta)</option><option>GMT+0 (UTC)</option></select></div>
 </div>
-<div class="space-y-2">
-<label class="block text-xs uppercase text-slate-400">Contact Email</label>
-<input class="w-full bg-black border border-slate-800 rounded-lg px-4 py-3 text-white" type="email" value="admin@maxshop.io"/>
-</div>
-<div class="space-y-2">
-<label class="block text-xs uppercase text-slate-400">Currency</label>
-<select class="w-full bg-black border border-slate-800 rounded-lg px-4 py-3 text-white">
-<option>USD ($)</option>
-<option selected>IDR (Rp)</option>
-<option>EUR (€)</option>
-</select>
-</div>
-<div class="space-y-2">
-<label class="block text-xs uppercase text-slate-400">Timezone</label>
-<select class="w-full bg-black border border-slate-800 rounded-lg px-4 py-3 text-white">
-<option selected>GMT+7 (Jakarta)</option>
-</select>
-</div>
-</div>
-<div class="mt-8">
-<button type="button" class="bg-blue-600 text-white px-6 py-2 rounded font-semibold">Save Settings</button>
+<div class="flex justify-end pt-4">
+<button class="bg-blue-600 text-white px-8 py-3 rounded-lg font-bold hover:brightness-110 active:scale-95 transition-all shadow-[0_0_20px_rgba(0,102,255,0.3)]" type="submit">Save Changes</button>
 </div>
 </form>
 </section>
+
+<!-- Home Banner Management -->
+<section class="glass-card rounded-xl p-8 shadow-2xl">
+<div class="flex items-start gap-6 mb-8">
+<div class="p-3 rounded-lg bg-purple-500/10 text-purple-400"><span class="material-symbols-outlined">image</span></div>
+<div><h3 class="text-xl font-semibold text-white">Home Banner Management</h3><p class="text-slate-500 text-sm">Update the main promotion banner on your storefront homepage.</p></div>
 </div>
-</main>
+<form id="banner-form" class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-4">
+<div class="space-y-2"><label class="block text-xs uppercase text-slate-400 font-semibold">Banner Title</label><input id="banner-title" class="w-full bg-black border border-slate-800 focus:border-blue-500 rounded-lg px-4 py-3 text-white outline-none" type="text" placeholder="e.g. Elevate Your Digital Experience"/></div>
+<div class="space-y-2"><label class="block text-xs uppercase text-slate-400 font-semibold">Banner Subtitle</label><input id="banner-subtitle" class="w-full bg-black border border-slate-800 focus:border-blue-500 rounded-lg px-4 py-3 text-white outline-none" type="text" placeholder="e.g. Up to 50% off on all items"/></div>
+<div class="space-y-2"><label class="block text-xs uppercase text-slate-400 font-semibold">Banner Image URL</label><input id="banner-image" class="w-full bg-black border border-slate-800 focus:border-blue-500 rounded-lg px-4 py-3 text-white outline-none" type="text" placeholder="https://cdn.maxshop.io/banners/banner.jpg"/></div>
+</div>
+<div class="flex flex-col gap-4">
+<label class="block text-xs uppercase text-slate-400 font-semibold">Banner Preview</label>
+<div id="banner-preview" class="flex-1 min-h-[180px] bg-slate-900 border-2 border-dashed border-slate-700 rounded-xl flex items-center justify-center text-slate-500 overflow-hidden relative">
+<div class="flex flex-col items-center" id="preview-placeholder"><span class="material-symbols-outlined text-4xl mb-2">image</span><p class="text-xs font-bold">Preview will appear here</p></div>
+<img id="preview-img" class="w-full h-full object-cover absolute inset-0 hidden" alt="Banner Preview"/>
+</div>
+</div>
+</div>
+<div class="flex justify-end">
+<button class="bg-blue-600 text-white px-8 py-3 rounded-lg font-bold hover:brightness-110 transition-all" type="submit">Update Banner</button>
+</div>
+</form>
+</section>
+
+<!-- Social & Automation Links -->
+<section class="glass-card rounded-xl p-8 shadow-2xl">
+<div class="flex items-start gap-6 mb-8">
+<div class="p-3 rounded-lg bg-green-500/10 text-green-400"><span class="material-symbols-outlined">share</span></div>
+<div><h3 class="text-xl font-semibold text-white">Social &amp; Automation Links</h3><p class="text-slate-500 text-sm">Manage external touchpoints — WA, Instagram, Community, and Auto-order Bot.</p></div>
+</div>
+<form id="social-form" class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-2">
+<label class="block text-xs uppercase text-slate-400 font-semibold flex items-center gap-2"><span class="material-symbols-outlined text-base text-green-400">chat</span> WhatsApp Support</label>
+<input id="link-wa" class="w-full bg-black border border-slate-800 focus:border-blue-500 rounded-lg px-4 py-3 text-white outline-none" type="text" placeholder="https://wa.me/62..."/>
+</div>
+<div class="space-y-2">
+<label class="block text-xs uppercase text-slate-400 font-semibold flex items-center gap-2"><span class="material-symbols-outlined text-base text-pink-400">photo_camera</span> Instagram Profile</label>
+<input id="link-ig" class="w-full bg-black border border-slate-800 focus:border-blue-500 rounded-lg px-4 py-3 text-white outline-none" type="text" placeholder="https://instagram.com/maxshop"/>
+</div>
+<div class="space-y-2">
+<label class="block text-xs uppercase text-slate-400 font-semibold flex items-center gap-2"><span class="material-symbols-outlined text-base text-blue-400">groups</span> Community Group</label>
+<input id="link-community" class="w-full bg-black border border-slate-800 focus:border-blue-500 rounded-lg px-4 py-3 text-white outline-none" type="text" placeholder="Discord / Telegram / WhatsApp Group link"/>
+</div>
+<div class="space-y-2">
+<label class="block text-xs uppercase text-slate-400 font-semibold flex items-center gap-2"><span class="material-symbols-outlined text-base text-yellow-400">smart_toy</span> Telegram Auto-order Bot</label>
+<input id="link-bot" class="w-full bg-black border border-slate-800 focus:border-blue-500 rounded-lg px-4 py-3 text-white outline-none" type="text" placeholder="t.me/your_bot_username"/>
+</div>
+</div>
+<div class="flex justify-end">
+<button class="bg-blue-600 text-white px-8 py-3 rounded-lg font-bold hover:brightness-110 transition-all" type="submit">Sync Links</button>
+</div>
+</form>
+</section>
+
+<!-- Payment Gateway -->
+<section class="glass-card rounded-xl p-8 shadow-2xl">
+<div class="flex items-start gap-6 mb-8">
+<div class="p-3 rounded-lg bg-yellow-500/10 text-yellow-400"><span class="material-symbols-outlined">payments</span></div>
+<div><h3 class="text-xl font-semibold text-white">Payment Gateway</h3><p class="text-slate-500 text-sm">Configure your digital wallet and QR credentials.</p></div>
+</div>
+<div class="space-y-8">
+<div class="p-6 bg-[#010f1f] rounded-xl border border-slate-800">
+<div class="flex items-center gap-4 mb-6"><span class="material-symbols-outlined text-yellow-400">qr_code_2</span><h4 class="font-bold text-white uppercase text-sm">QRIS Configuration</h4></div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2"><label class="block text-xs text-slate-500">Merchant ID</label><input class="w-full bg-black border border-slate-800 rounded-lg px-4 py-3 text-white outline-none" type="password" value="MID-882199021"/></div>
+<div class="space-y-2"><label class="block text-xs text-slate-500">API Secret Key</label><input class="w-full bg-black border border-slate-800 rounded-lg px-4 py-3 text-white outline-none" type="password" value="SK_LIVE_QRIS_XXXXX"/></div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="p-6 bg-[#010f1f] rounded-xl border border-slate-800">
+<div class="flex items-center gap-4 mb-4"><span class="material-symbols-outlined text-blue-400">account_balance_wallet</span><h4 class="font-bold text-white uppercase text-sm">DANA</h4></div>
+<div class="space-y-4">
+<div><label class="block text-xs text-slate-500 mb-1">DANA ID</label><input class="w-full bg-black border border-slate-800 rounded-lg px-4 py-3 text-white outline-none" placeholder="Merchant ID" type="text"/></div>
+<div><label class="block text-xs text-slate-500 mb-1">Client Key</label><input class="w-full bg-black border border-slate-800 rounded-lg px-4 py-3 text-white outline-none" placeholder="••••••••••••" type="password"/></div>
+</div>
+</div>
+<div class="p-6 bg-[#010f1f] rounded-xl border border-slate-800">
+<div class="flex items-center gap-4 mb-4"><span class="material-symbols-outlined text-green-400">account_balance_wallet</span><h4 class="font-bold text-white uppercase text-sm">GOPAY</h4></div>
+<div class="space-y-4">
+<div><label class="block text-xs text-slate-500 mb-1">GoBiz Key</label><input class="w-full bg-black border border-slate-800 rounded-lg px-4 py-3 text-white outline-none" placeholder="Integration Key" type="text"/></div>
+<div><label class="block text-xs text-slate-500 mb-1">Merchant Token</label><input class="w-full bg-black border border-slate-800 rounded-lg px-4 py-3 text-white outline-none" placeholder="••••••••••••" type="password"/></div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex justify-end pt-6">
+<button class="bg-blue-600 text-white px-8 py-3 rounded-lg font-bold hover:brightness-110 transition-all">Save Gateway Config</button>
+</div>
+</section>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+<!-- Security -->
+<section class="glass-card rounded-xl p-8 shadow-2xl">
+<div class="flex items-start gap-6 mb-8">
+<div class="p-3 rounded-lg bg-red-500/10 text-red-400"><span class="material-symbols-outlined">lock_reset</span></div>
+<div><h3 class="text-xl font-semibold text-white">Security</h3><p class="text-slate-500 text-sm">Update administrator credentials.</p></div>
+</div>
+<form id="security-form" class="space-y-4">
+<div><label class="block text-xs uppercase text-slate-400 font-semibold mb-1">Current Password</label><input class="w-full bg-black border border-slate-800 focus:border-blue-500 rounded-lg px-4 py-3 text-white outline-none" type="password"/></div>
+<div><label class="block text-xs uppercase text-slate-400 font-semibold mb-1">New Password</label><input id="new-password" class="w-full bg-black border border-slate-800 focus:border-blue-500 rounded-lg px-4 py-3 text-white outline-none" type="password"/></div>
+<div><label class="block text-xs uppercase text-slate-400 font-semibold mb-1">Confirm Password</label><input id="confirm-password" class="w-full bg-black border border-slate-800 focus:border-blue-500 rounded-lg px-4 py-3 text-white outline-none" type="password"/></div>
+<div class="pt-2"><button class="border border-yellow-500 text-yellow-400 px-6 py-2 rounded-lg font-bold hover:bg-yellow-500 hover:text-black transition-all" type="submit">Update Password</button></div>
+</form>
+</section>
+
+<!-- Notifications -->
+<section class="glass-card rounded-xl p-8 shadow-2xl">
+<div class="flex items-start gap-6 mb-8">
+<div class="p-3 rounded-lg bg-blue-500/10 text-blue-400"><span class="material-symbols-outlined">notifications_active</span></div>
+<div><h3 class="text-xl font-semibold text-white">Notifications</h3><p class="text-slate-500 text-sm">Real-time alerts via external bots.</p></div>
+</div>
+<form class="space-y-6">
+<div class="p-5 bg-[#010f1f] rounded-lg border border-white/5 space-y-4">
+<div class="flex items-center gap-3 mb-2"><span class="material-symbols-outlined text-blue-400">rocket_launch</span><h4 class="text-white font-bold text-sm">Telegram Bot Integration</h4></div>
+<div><label class="block text-xs uppercase text-slate-500 mb-1">Bot Token</label><input class="w-full bg-black border border-slate-800 rounded-lg px-4 py-3 text-white font-mono text-xs outline-none" type="text" value="721992011:AAF-jU2M9xk..."/></div>
+<div><label class="block text-xs uppercase text-slate-500 mb-1">Chat ID</label><input class="w-full bg-black border border-slate-800 rounded-lg px-4 py-3 text-white outline-none" type="text" value="@maxshop_admin_alerts"/></div>
+</div>
+<div class="flex items-center justify-between p-4 bg-white/5 rounded-lg">
+<span class="text-sm text-slate-300">Daily Sales Reports</span>
+<div class="w-12 h-6 bg-blue-600 rounded-full relative p-1 cursor-pointer"><div class="w-4 h-4 bg-white rounded-full ml-auto"></div></div>
+</div>
+<button class="w-full bg-white/5 hover:bg-white/10 text-white border border-white/10 px-6 py-3 rounded-lg font-bold transition-all flex items-center justify-center gap-2" type="submit"><span class="material-symbols-outlined text-sm">send</span>Test Notification</button>
+</form>
+</section>
+</div>
+</div>
+
+<footer class="ml-64 mt-10 px-10 py-8 border-t border-slate-800 text-slate-600 flex justify-between items-center">
+<p class="text-xs">© 2024 MaxShop Corporate. All rights reserved.</p>
+<div class="flex gap-6"><a class="text-xs hover:text-white transition-colors" href="#">Documentation</a><a class="text-xs hover:text-white transition-colors" href="#">Support</a></div>
+</footer>
+
+<script>
+// ===== TOAST NOTIFICATION =====
+function showToast(msg, type = 'success') {
+    const t = document.createElement('div');
+    t.className = `fixed top-6 right-6 z-[999] px-6 py-4 rounded-xl text-white font-semibold shadow-2xl transition-all text-sm flex items-center gap-3 ${type === 'success' ? 'bg-blue-600' : 'bg-red-600'}`;
+    t.innerHTML = `<span class="material-symbols-outlined text-base">${type === 'success' ? 'check_circle' : 'error'}</span>${msg}`;
+    document.body.appendChild(t);
+    setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 400); }, 2500);
+}
+
+// ===== LOAD SAVED SETTINGS =====
+const SETTINGS_KEY = 'maxshop_settings';
+function loadSettings() {
+    const s = JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}');
+    if (s.storeName) document.getElementById('store-name').value = s.storeName;
+    if (s.storeEmail) document.getElementById('store-email').value = s.storeEmail;
+    if (s.bannerTitle) document.getElementById('banner-title').value = s.bannerTitle;
+    if (s.bannerSubtitle) document.getElementById('banner-subtitle').value = s.bannerSubtitle;
+    if (s.bannerImage) { document.getElementById('banner-image').value = s.bannerImage; showBannerPreview(s.bannerImage); }
+    if (s.linkWa) document.getElementById('link-wa').value = s.linkWa;
+    if (s.linkIg) document.getElementById('link-ig').value = s.linkIg;
+    if (s.linkCommunity) document.getElementById('link-community').value = s.linkCommunity;
+    if (s.linkBot) document.getElementById('link-bot').value = s.linkBot;
+}
+
+function showBannerPreview(url) {
+    if (!url) return;
+    const img = document.getElementById('preview-img');
+    const ph = document.getElementById('preview-placeholder');
+    img.src = url;
+    img.classList.remove('hidden');
+    if (ph) ph.classList.add('hidden');
+}
+
+document.getElementById('banner-image').addEventListener('input', e => showBannerPreview(e.target.value));
+
+// ===== SAVE GENERAL =====
+document.getElementById('general-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const s = JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}');
+    s.storeName = document.getElementById('store-name').value;
+    s.storeEmail = document.getElementById('store-email').value;
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify(s));
+    showToast('General settings saved!');
+});
+
+// ===== SAVE BANNER =====
+document.getElementById('banner-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const s = JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}');
+    s.bannerTitle = document.getElementById('banner-title').value;
+    s.bannerSubtitle = document.getElementById('banner-subtitle').value;
+    s.bannerImage = document.getElementById('banner-image').value;
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify(s));
+    showBannerPreview(s.bannerImage);
+    showToast('Banner updated! Reload homepage to see changes.');
+});
+
+// ===== SAVE SOCIAL LINKS =====
+document.getElementById('social-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const s = JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}');
+    s.linkWa = document.getElementById('link-wa').value;
+    s.linkIg = document.getElementById('link-ig').value;
+    s.linkCommunity = document.getElementById('link-community').value;
+    s.linkBot = document.getElementById('link-bot').value;
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify(s));
+    showToast('Social links synced to homepage!');
+});
+
+// ===== SECURITY =====
+document.getElementById('security-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const np = document.getElementById('new-password').value;
+    const cp = document.getElementById('confirm-password').value;
+    if (np !== cp) { showToast('Passwords do not match!', 'error'); return; }
+    if (np.length < 6) { showToast('Password terlalu pendek!', 'error'); return; }
+    showToast('Password updated successfully!');
+    e.target.reset();
+});
+
+loadSettings();
+</script>
 </body></html>
